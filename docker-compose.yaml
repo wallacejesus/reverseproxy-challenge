@@ -1,0 +1,44 @@
+version: '3.0'
+services:
+  nginx:
+    container_name: nginx
+    image: nginx
+    networks:
+      - reverseproxy
+    ports:
+      - 80:80
+    depends_on:
+      - nodejs
+    volumes:
+      - ./proxy/:/etc/nginx/conf.d
+
+  nodejs:
+    container_name: nodejs
+    build: 
+      dockerfile: Dockerfile
+      context: .    
+    networks:
+      - reverseproxy
+    expose:
+      - 3000
+    volumes:
+      - ./app/:/app
+    depends_on:
+      - mysql
+
+  mysql:
+    container_name: mysql
+    image: mysql
+    networks:
+      - reverseproxy
+    environment:
+      MYSQL_ROOT_PASSWORD: 8tD0Etc041g!
+    volumes:
+      - ./database/:/var/lib/mysql
+    expose:
+      - 3306
+
+networks:
+  reverseproxy:
+    driver: bridge
+
