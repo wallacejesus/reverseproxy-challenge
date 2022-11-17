@@ -19,13 +19,14 @@ services:
       context: .    
     networks:
       - reverseproxy
+    tty: true
     expose:
       - 3000
     volumes:
       - ./app/:/app
+      - /app/node_modules
     depends_on:
       - mysql
-
   mysql:
     container_name: mysql
     image: mysql

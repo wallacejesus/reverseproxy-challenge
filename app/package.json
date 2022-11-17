@@ -7,7 +7,7 @@
   "license": "MIT",
   "scripts": {
     "tsconfig": "tsc --init",
-    "start": "ts-node-dev --poll src/index.ts",
+    "start": "npx ts-node-dev --poll src/index.ts",
     "dev": "ts-node-dev --inspect=0.0.0.0:9222 --respawn --transpile-only --ignore-watch node_modules src/index.ts",
     "build": "tsc"
   },
