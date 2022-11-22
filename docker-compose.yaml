@@ -14,7 +14,7 @@ services:
 
   nodejs:
     container_name: nodejs
-    command: dockerize -wait tcp://mysql:3306 -timeout 30s docker-entrypoint.sh
+    entrypoint: dockerize -wait tcp://mysql:3306 -timeout 30s  docker-entrypoint.sh yarn start
     build: 
       dockerfile: Dockerfile
       context: .    

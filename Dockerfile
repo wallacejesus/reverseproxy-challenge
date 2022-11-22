@@ -10,4 +10,3 @@ RUN wget https://github.com/jwilder/dockerize/releases/download/$DOCKERIZE_VERSI
     && rm dockerize-linux-amd64-$DOCKERIZE_VERSION.tar.gz
 RUN 
 RUN yarn install 
-ENTRYPOINT [ "yarn","start" ]
