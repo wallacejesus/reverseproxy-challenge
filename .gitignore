@@ -2,4 +2,6 @@
 */yarn.lock
 */build
 .vscode/*
-database/mysqlfiles
+database/mysql*
+database/binlog*
+database/#innodb_redo
