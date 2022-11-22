@@ -14,12 +14,12 @@ services:
 
   nodejs:
     container_name: nodejs
+    command: dockerize -wait tcp://mysql:3306 -timeout 30s docker-entrypoint.sh
     build: 
       dockerfile: Dockerfile
       context: .    
     networks:
       - reverseproxy
-    tty: true
     expose:
       - 3000
     volumes:
@@ -33,9 +33,11 @@ services:
     networks:
       - reverseproxy
     environment:
-      MYSQL_ROOT_PASSWORD: 8tD0Etc041g!
+            MYSQL_ROOT_PASSWORD: 8tD0Etc041g!
     volumes:
-      - ./database/:/var/lib/mysql
+      - ./database/mysqlfiles/:/var/lib/mysql
+      - ./database/objects:/database/objects
+      - ./database/setup.sql:/docker-entrypoint-initdb.d/setup.sql
     expose:
       - 3306
 
